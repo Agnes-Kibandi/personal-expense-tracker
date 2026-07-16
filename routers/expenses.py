@@ -13,6 +13,7 @@ from fastapi import APIRouter,Depends,HTTPException
 from models import Expense as Expensemodel
 from schemas import ExpenseOut,ExpenseIn,ExpenseUpdate
 from typing import List
+from collections import defaultdict
 
 
 router=APIRouter(prefix="/expenses",tags=["expenses"])
@@ -77,3 +78,20 @@ def delete_expense(id:int,db=Depends(get_db),user=Depends(get_current_user)):
     return{"Message":"expense deleted"}
 
 
+@router.get("/summary")
+def get_summary(db=Depends(get_db),user=Depends(get_current_user)):
+   expenses=db.query(Expensemodel).filter(Expensemodel.user_id==user.id).all()
+   total_expense=0.0
+   by_category=defaultdict(float)
+
+   for expense in expenses:
+      total_expense+=expense.amount
+      by_category[expense.category]+=expense.amount
+
+   return {"total":total_expense,"by_category":by_category}
+    
+
+
+    
+      
+      

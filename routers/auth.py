@@ -12,6 +12,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 router= APIRouter(prefix="/auth", tags=["auth"])
 
 
+
 @router.post("/register",response_model=UserOut)
 def signup(user:UserIn,db=Depends(get_db)):
     hashed_password1= hashpassword(user.password)

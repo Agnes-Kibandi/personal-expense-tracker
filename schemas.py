@@ -31,7 +31,7 @@ class ExpenseOut(BaseModel):
     category:str
     date:date
 
-    
+  
 
 
 class ExpenseUpdate(BaseModel):
