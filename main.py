@@ -53,4 +53,6 @@ async def user_not_found_handler(request:Request,exc:UserNotFound):
         }
     )
        
-        
+@app.get("/")
+def root():
+    return {"message":"Don't panic,you will do this"}     
