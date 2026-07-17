@@ -15,7 +15,7 @@ from fastapi.security import OAuth2PasswordBearer
 from database import get_db
 
 
-Oauth2_scheme=OAuth2PasswordBearer(tokenUrl="/login")
+Oauth2_scheme=OAuth2PasswordBearer(tokenUrl="/auth/login")
 load_dotenv()
 
 password_context=CryptContext(["bcrypt"])
