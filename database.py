@@ -13,7 +13,7 @@ load_dotenv()
 
 database_location= os.getenv("DATABASEURL")
 
-engine=create_engine(database_location,connect_args="check_same_thread":False)
+engine=create_engine(database_location,connect_args={"check_same_thread":False})
 #connect_ags agument is specific to sqlite
 
 SessionLocal=sessionmaker(bind=engine, autoflush=False, autocommit=False)
